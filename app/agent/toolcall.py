@@ -8,9 +8,9 @@ from app.agent.react import ReActAgent
 from app.exceptions import TokenLimitExceeded
 from app.logger import logger
 from app.prompt.toolcall import NEXT_STEP_PROMPT, SYSTEM_PROMPT
-from app.schema import TOOL_CHOICE_TYPE, AgentState, Message, ToolCall, ToolChoice
+from app.schema import (TOOL_CHOICE_TYPE, AgentState, Message, ToolCall,
+                        ToolChoice)
 from app.tool import CreateChatCompletion, Terminate, ToolCollection
-
 
 TOOL_CALL_REQUIRED = "Tool calls required but none provided"
 
@@ -33,7 +33,7 @@ class ToolCallAgent(ReActAgent):
     tool_calls: List[ToolCall] = Field(default_factory=list)
     _current_base64_image: Optional[str] = None
 
-    max_steps: int = 30
+    max_steps: int = 3
     max_observe: Optional[Union[int, bool]] = None
 
     async def think(self) -> bool:

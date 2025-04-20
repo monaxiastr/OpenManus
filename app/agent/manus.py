@@ -10,7 +10,9 @@ from app.prompt.manus import NEXT_STEP_PROMPT, SYSTEM_PROMPT
 from app.tool import Terminate, ToolCollection
 from app.tool.ask_human import AskHuman
 from app.tool.browser_use_tool import BrowserUseTool
+from app.tool.call_mysql_procedure import MySQLStoredProcedureFunction
 from app.tool.mcp import MCPClients, MCPClientTool
+from app.tool.mysql_query import MySQLQueryFunction
 from app.tool.python_execute import PythonExecute
 from app.tool.str_replace_editor import StrReplaceEditor
 
@@ -25,7 +27,7 @@ class Manus(ToolCallAgent):
     next_step_prompt: str = NEXT_STEP_PROMPT
 
     max_observe: int = 10000
-    max_steps: int = 20
+    max_steps: int = 3
 
     # MCP clients for remote tool access
     mcp_clients: MCPClients = Field(default_factory=MCPClients)
@@ -38,6 +40,8 @@ class Manus(ToolCallAgent):
             StrReplaceEditor(),
             AskHuman(),
             Terminate(),
+            MySQLQueryFunction(),
+            MySQLStoredProcedureFunction(),
         )
     )
 
