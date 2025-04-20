@@ -12,6 +12,7 @@ from app.tool.ask_human import AskHuman
 from app.tool.browser_use_tool import BrowserUseTool
 from app.tool.call_mysql_procedure import MySQLStoredProcedureFunction
 from app.tool.mcp import MCPClients, MCPClientTool
+from app.tool.mysql_data_analysis import DataAnalysisFunction
 from app.tool.mysql_query import MySQLQueryFunction
 from app.tool.python_execute import PythonExecute
 from app.tool.str_replace_editor import StrReplaceEditor
@@ -42,6 +43,7 @@ class Manus(ToolCallAgent):
             Terminate(),
             MySQLQueryFunction(),
             MySQLStoredProcedureFunction(),
+            DataAnalysisFunction()
         )
     )
 
